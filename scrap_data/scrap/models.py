@@ -8,3 +8,6 @@ class Details(models.Model):
     app_id = models.CharField(max_length=255, unique=True)
     app_name = models.CharField(max_length=255)
     app_detail = models.TextField()
+
+    def __str__(self):
+        return self.app_name
