@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from django.http import HttpResponse
 
-import play_scraper
+from scrap import scraper
 from django.core.cache import cache
 
 from .models import Details
@@ -20,7 +20,7 @@ def return_searched_app_name(request):
         app_name = request.GET.get('app_name', '')
         if app_name == '':
             return HttpResponse("Send app name in parameter")
-        app_detail = play_scraper.search(app_name, page=2)
+        app_detail = scraper.search(app_name)
         return HttpResponse(str(app_detail))
     except Exception as e:
         raise
@@ -35,7 +35,7 @@ def return_detail_of_app(request):
         if app_obj is not None:
             app_details = app_obj.app_detail
         else:
-            app_details = play_scraper.details(app_id)
+            app_details = scraper.details(app_id)
             if app_details is not None:
                 Details.objects.create(app_id=app_id,app_name= app_details['title'],app_detail=app_details)
             else:

@@ -22,4 +22,3 @@ requests-futures==0.9.9
 six==1.12.0
 soupsieve==1.9.1
 urllib3==1.24.2
--e git://github.com/prateekeshwar/play-scraper.git#egg=play-scraper
